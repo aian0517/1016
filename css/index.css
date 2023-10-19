@@ -102,13 +102,24 @@ ul{
 /* load */
 .load-box{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    position: relative;
+    /* background: url(../img/load/load-bg.png) no-repeat center center/cover; */
     overflow: hidden;
-    background: url(../img/load/load-bg.png) no-repeat center center/cover;
 }
 .load-bg{
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.load-bg2{
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
     position: absolute;
@@ -116,7 +127,17 @@ ul{
     left: 0;
     z-index: -1;
 }
-
+.eee{
+    position: absolute;
+    right: 50%;
+    bottom: 3%;
+    z-index: 2;
+    transform: translateX(50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 
 /* nav */
@@ -359,6 +380,11 @@ a-scene{
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: scale(0.85);
+    transition: transform .5s linear;
+}
+.body5-swiper .swiper-slide-active{
+    transform: scale(1);
 }
 .forum{
     width: 500px;

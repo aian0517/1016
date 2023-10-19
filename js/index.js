@@ -1,59 +1,96 @@
 const q = document.querySelector.bind(document)
 const qa = document.querySelectorAll.bind(document)
-gsap.registerPlugin(ScrollTrigger, Draggable)
+gsap.registerPlugin(ScrollTrigger,ScrollToPlugin,TextPlugin)
 let gsap_media = gsap.matchMedia()
-// load
 
-// var load_gsap = gsap.timeline({
+// nav
+// const nav_anim = gsap.to('nav',{
+//     margin:20,
+//     borderRadius:10,
 //     scrollTrigger:{
-//         trigger:'.load-box',
-//         start:'top 20%',
-//         end:'bottom top',
-//         pin:true,
-//         scrub:true,
+//         trigger:'body',
+//         start:'top top',
+//         toggleActions:"play none none reverse",
+//         toggleClass:{targets:'nav',className:'fixed-top'},
 //         markers:true,
 //     },
 // })
-// .to('.load-bg',{
-//     scale:1.2,
-// })
-// .to('.load-box',{
-//     autoAlpha:0,
+// nav_anim.pause()
+
+// load
+
+// gsap_media.add('(min-width:1080px)',()=>{
+//     gsap.to('.load-img',{
+//         y:-15,
+//         duration:1,
+//         ease:'linear',
+//         yoyo:true,
+//         repeat:-1,
+//     })
+//     var load_gsap = gsap.timeline({
+//         scrollTrigger:{
+//             trigger:'.load-box',
+//             start:'bottom bottom',
+//             end:'95% top',
+//             scrub:true,
+//             // markers:true,
+//         },
+//         onComplete:()=>{
+//             q('.load-box').remove()
+//             gsap.to('body',{duration:0,scrollTop:0})
+//             q('nav').classList.add('fixed-top')
+//             load_gsap.kill()
+//         },
+        
+//     })
+//     load_gsap.set('nav',{
+//         marginTop:q('.load-box').offsetHeight/2
+//     })
+//     load_gsap.to('.load-bg2,.load-box',{
+//         scale:1.2,
+//     })
+//     load_gsap.to('.load-box',{
+//         y:500,
+//     },"<")
+//     load_gsap.to('.load-box',{
+//         autoAlpha:0,
+//     },)
+//     load_gsap.to('nav',{
+//         marginTop:0,
+//     },"<")
 // })
 
-const nav_anim = gsap.from('nav',{
-    margin:20,
-    borderRadius:10,
-    scrollTrigger:{
-        trigger:'body',
-        start:'5px top',
-        toggleActions:"play none none reverse",
-    },
-})
 // header
 
-var head_swiper_bg = new Swiper('.head-swiper-bg', {
-    loop:true,
-    effect: 'fade',
-    fadeEffect: {
-        crossFade: true,
-    },
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction:false,
-    }
-})
 gsap.to('.head-bg',{
     y:100,
     scrollTrigger:{
         trigger:'header',
         start:'center center',
+        end:'bottom center',
         endTrigger:'#body1',
-        end:'center center',
         scrub:1,
     }
 })
-
+const head_carousel = {
+    0:`<span class="color2">慢動作探索城市，品味初秋思愁</span>`,
+    1:`活動期間：<span class="color2 fw-bold">2023 年 10 月份，週五/週六/週日</span><br>
+    <span class="color2 fw-bold">(每週五晚間 18:00-22:00)</span><br>
+    <span class="color2 fw-bold">(每週六日上午 10:00 至下午 21:00)</span><br>
+    `,
+    2:`<span class="color2 fw-bold">免費入場</span>，可根據自己的興趣參加不同主題的活動和品味美食<br>
+    活動地點：<span class="color2 fw-bold">台中市西區林森路33號</span>
+    `
+}
+q('#head-carousel').addEventListener('slide.bs.carousel',(e)=>{
+    gsap.to('.head-text',{
+        duration:5,
+        text:{
+            value:head_carousel[e.to],
+            speed:1,
+        }
+    })   
+})
 // body1
 
 var body1_swiper = new Swiper('.body1-swiper', {
@@ -83,7 +120,6 @@ body1_card_data.forEach((item) => {
     </div>
     `)
 })
-
 
 gsap.from('.body1-card',{
     y:100,
@@ -127,6 +163,7 @@ var body2_swiper = new Swiper('.body2-swiper', {
 var body4_swiper = new Swiper('.body4-swiper', {
     slidesPerView: 4,
     centeredSlides:true,
+    noSwiping:true,
     breakpoints: {
         1: {
             slidesPerView: 1.2,
@@ -140,6 +177,7 @@ var body4_swiper = new Swiper('.body4-swiper', {
 })
 
 //
+
 var body2_img_gsap = gsap.timeline()
 .to('.body2-img,.body2-img2',{
     autoAlpha:0,
@@ -225,7 +263,9 @@ gsap_media.add('(min-width:1080px)',()=>{
         }
     })
 })
+
 // body5
+
 gsap_media.add('(min-width:1080px)',()=>{
         gsap.to('.body4-swiper-wrapper',{
             x:0,
@@ -240,7 +280,7 @@ gsap_media.add('(min-width:1080px)',()=>{
     })
 var body5_swiper = new Swiper('.body5-swiper', {
     grabCursor:true,
-    slidesPerView:1.2,
+    slidesPerView:1.3,
     spaceBetween:20,
     centeredSlides:true,
     autoplay:{
@@ -315,6 +355,7 @@ function body6_a(e){
     body6()
 }
 body6()
+
 var message_name = []
 var message_email = []
 var message_text = []
@@ -371,6 +412,7 @@ window.addEventListener('load', () => {
     message_email = message_email.concat(local_email)
     message_text = message_text.concat(local_text)
 })
+
 // 
 var rrr = 0
 q('.robot-btn').addEventListener('click', () => {
@@ -402,7 +444,7 @@ q('.robot-submit').addEventListener('click', () => {
         x = Object.keys(robot_data).filter(k => q('.robot-input').value.includes(k))
         if(x.length){
             ans = robot_data[x].text
-            window.location.href = `#${robot_data[x].url}`
+            gsap.to(window,{duration:0,scrollTo:`#${robot_data[x].url}`})
         }
         setTimeout(() => {
             q('.robot-body').innerHTML += `
@@ -523,11 +565,12 @@ q('.login-btn').addEventListener('click', () => {
 })
 
 
-function gsap_title_anim(elem,dur){
+
+function gsap_title_anim(elem){
     gsap.from(elem,{
         x:-150,
         opacity:0,
-        duration:dur,
+        duration:1,
         scrollTrigger:{
             trigger:elem,
             start:'top center',
@@ -536,10 +579,10 @@ function gsap_title_anim(elem,dur){
         },
     })
 }
-gsap_title_anim('.title',1)
-gsap_title_anim('.title2',1)
-gsap_title_anim('.title3',1)
-gsap_title_anim('.title4',1)
-gsap_title_anim('.title5',1)
-gsap_title_anim('.title6',1)
+gsap_title_anim('.title')
+gsap_title_anim('.title2')
+gsap_title_anim('.title3')
+gsap_title_anim('.title4')
+gsap_title_anim('.title5')
+gsap_title_anim('.title6')
 
