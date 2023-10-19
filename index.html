@@ -31,7 +31,7 @@
         </div>
     </div> -->
     <!-- nav -->
-    <nav class="navbar navbar-expand-lg py-3 navbar-dark">
+    <nav class="navbar navbar-expand-lg py-3 navbar-dark fixed-top">
         <div class="container-fluid col-lg-10 col-12">
             <a href="" class="navbar-brand f5 mx-auto">寶島慢播假日市集</a>
             <div class="nav order-lg-2 order-0">
@@ -41,7 +41,7 @@
                 <!-- <a href="#body4'" class="nav-link df jcc aic">
                     <img src="./img/nav/nav-icon-shop.png" alt="" class="nav-icon">
                 </a> -->
-                <div class="nav-link df jcc aic nav-login text-light fdc">
+                <div class="nav-link df jcc aic nav-login text-light ">
                     <img src="./img/nav/nav-icon-login.png" alt="" class="nav-icon">
                 </div>
                 <div class="nav-link df jcc aic" onclick="window.open('index.html','_blank','top=150,left=150,width=500px,height=750px')">
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-12">
-                    <a-scene embedded vr-mode-ui="false">
+                    <a-scene embedded vr-mode-ui="false" keyboard-shortcuts="enterVR:false">
                         <a-box src="./img/header/a-img.png"
                             animation="property:rotation;to:0 360 0;dur:10000;loop:true;easing:linear"
                         ></a-box>
@@ -357,7 +357,6 @@
     <div class="robot-box">
         <div class="robot-header">
             <h1 class="m-0 f5 fw-bold text-center">寶島慢播機器人</h1>
-            <!-- <button class="btn-close"></button> -->
         </div>
         <div class="robot-body text-light">
             <p>
@@ -398,7 +397,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="fw-bold f5">登入帳號</h1>
+                    <h1 class="fw-bold f5 m-0">登入帳號</h1>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -419,6 +418,22 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn login-btn" data-bs-dismiss="modal">登入</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade text-dark" id="logout">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="fw-bold f5 m-0">帳號資訊</h1>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="f7">目前尚未連線網路，無法常看帳號相關資訊</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-bs-dismiss="modal" onclick="logout()">登出</button>
                 </div>
             </div>
         </div>

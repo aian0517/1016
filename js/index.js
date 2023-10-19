@@ -4,17 +4,16 @@ gsap.registerPlugin(ScrollTrigger,ScrollToPlugin,TextPlugin)
 let gsap_media = gsap.matchMedia()
 
 // nav
-// const nav_anim = gsap.to('nav',{
-//     margin:20,
-//     borderRadius:10,
-//     scrollTrigger:{
-//         trigger:'body',
-//         start:'top top',
-//         toggleActions:"play none none reverse",
-//         toggleClass:{targets:'nav',className:'fixed-top'},
-//         markers:true,
-//     },
-// })
+
+const nav_anim = gsap.from('nav',{
+    margin:20,
+    borderRadius:10,
+    scrollTrigger:{
+        trigger:'body',
+        start:'top top',
+        toggleActions:"play none none reverse",
+    },
+})
 // nav_anim.pause()
 
 // load
@@ -163,15 +162,17 @@ var body2_swiper = new Swiper('.body2-swiper', {
 var body4_swiper = new Swiper('.body4-swiper', {
     slidesPerView: 4,
     centeredSlides:true,
-    noSwiping:true,
+    
     breakpoints: {
         1: {
             slidesPerView: 1.2,
             spaceBetween:20,
+            noSwiping:false,
         },
         1080: {
             slidesPerView: 4,
             spaceBetween:0,
+            noSwiping:true,
         },
     },
 })
@@ -189,7 +190,13 @@ var body2_img_gsap = gsap.timeline()
     ease: 'linear',
     duration: .2,
 },'>')
-body2_img_gsap.pause()
+.to('.body2-img,.body2-img2',{
+    autoAlpha: 1,
+    ease: 'linear',
+    duration: .2,
+},'>')
+
+// body2_img_gsap.pause()
 
 function mobile_fun() {
     body2_swiper.removeAllSlides()
@@ -554,15 +561,29 @@ function fs_click(){
 // modal
 
 const login_modal = new bootstrap.Modal('#login')
+const logout_modal = new bootstrap.Modal('#logout')
 
-
+var log = 0
 q('.nav-login').addEventListener('click', () => {
-    login_modal.show()
+    if(log === 0){
+        login_modal.show()
+        log = 1
+    }else{
+        logout_modal.show()
+    }
 })
-
 q('.login-btn').addEventListener('click', () => {
-   q('.nav-login').innerHTML += '<p><span class="color2 fw-bold">b034</span><br>於高雄市登入</p>' 
+    qa('#login input').forEach((item)=>{
+        item.value = ''
+    })
+    q('.nav-login').innerHTML += '<span class="color2 fw-bold">b034</span>' 
 })
+function logout(){
+    log = 0
+    q('.nav-login').click()
+    q('.nav-login').innerHTML ='<img src="./img/nav/nav-icon-login.png" alt="" class="nav-icon">'
+}
+
 
 
 
