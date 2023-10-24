@@ -1,17 +1,17 @@
 const q = document.querySelector.bind(document)
 const qa = document.querySelectorAll.bind(document)
-gsap.registerPlugin(ScrollTrigger,ScrollToPlugin,TextPlugin)
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin)
 let gsap_media = gsap.matchMedia()
 
 // nav
 
-const nav_anim = gsap.from('nav',{
-    margin:20,
-    borderRadius:10,
-    scrollTrigger:{
-        trigger:'body',
-        start:'top top',
-        toggleActions:"play none none reverse",
+const nav_anim = gsap.from('nav', {
+    margin: 20,
+    borderRadius: 10,
+    scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        toggleActions: "play none none reverse",
     },
 })
 // nav_anim.pause()
@@ -40,7 +40,7 @@ const nav_anim = gsap.from('nav',{
 //             q('nav').classList.add('fixed-top')
 //             load_gsap.kill()
 //         },
-        
+
 //     })
 //     load_gsap.set('nav',{
 //         marginTop:q('.load-box').offsetHeight/2
@@ -61,34 +61,34 @@ const nav_anim = gsap.from('nav',{
 
 // header
 
-gsap.to('.head-bg',{
-    y:100,
-    scrollTrigger:{
-        trigger:'header',
-        start:'center center',
-        end:'bottom center',
-        endTrigger:'#body1',
-        scrub:1,
+gsap.to('.head-bg', {
+    y: 100,
+    scrollTrigger: {
+        trigger: 'header',
+        start: 'center center',
+        end: 'bottom center',
+        endTrigger: '#body1',
+        scrub: 1,
     }
 })
 const head_carousel = {
-    0:`<span class="color2">慢動作探索城市，品味初秋思愁</span>`,
-    1:`活動期間：<span class="color2 fw-bold">2023 年 10 月份，週五/週六/週日</span><br>
+    0: `<span class="color2">慢動作探索城市，品味初秋思愁</span>`,
+    1: `活動期間：<span class="color2 fw-bold">2023 年 10 月份，週五/週六/週日</span><br>
     <span class="color2 fw-bold">(每週五晚間 18:00-22:00)</span><br>
     <span class="color2 fw-bold">(每週六日上午 10:00 至下午 21:00)</span><br>
     `,
-    2:`<span class="color2 fw-bold">免費入場</span>，可根據自己的興趣參加不同主題的活動和品味美食<br>
+    2: `<span class="color2 fw-bold">免費入場</span>，可根據自己的興趣參加不同主題的活動和品味美食<br>
     活動地點：<span class="color2 fw-bold">台中市西區林森路33號</span>
     `
 }
-q('#head-carousel').addEventListener('slide.bs.carousel',(e)=>{
-    gsap.to('.head-text',{
-        duration:5,
-        text:{
-            value:head_carousel[e.to],
-            speed:1,
+q('#head-carousel').addEventListener('slide.bs.carousel', (e) => {
+    gsap.to('.head-text', {
+        duration: 5,
+        text: {
+            value: head_carousel[e.to],
+            speed: 1,
         }
-    })   
+    })
 })
 // body1
 
@@ -120,14 +120,14 @@ body1_card_data.forEach((item) => {
     `)
 })
 
-gsap.from('.body1-card',{
-    y:100,
-    opacity:0,
-    duration:1,
-    scrollTrigger:{
-        trigger:'#body1',
-        start:'20% center',
-        end:'center center',
+gsap.from('.body1-card', {
+    y: 100,
+    opacity: 0,
+    duration: 1,
+    scrollTrigger: {
+        trigger: '#body1',
+        start: '20% center',
+        end: 'center center',
     },
 })
 // gsap.to('main',{
@@ -161,59 +161,52 @@ var body2_swiper = new Swiper('.body2-swiper', {
 
 var body4_swiper = new Swiper('.body4-swiper', {
     slidesPerView: 4,
-    centeredSlides:true,
-    
+    centeredSlides: true,
     breakpoints: {
         1: {
             slidesPerView: 1.2,
-            spaceBetween:20,
-            noSwiping:false,
+            spaceBetween: 20,
+            noSwiping: false,
         },
         1080: {
             slidesPerView: 4,
-            spaceBetween:0,
-            noSwiping:true,
+            spaceBetween: 0,
+            noSwiping: true,
         },
     },
 })
 
 //
 
-var body2_img_gsap = gsap.timeline()
-.to('.body2-img,.body2-img2',{
-    autoAlpha:0,
-    ease: 'linear',
-    duration: .2,
-})
-.from('.body2-img,.body2-img2',{
-    autoAlpha: 0,
-    ease: 'linear',
-    duration: .2,
-},'>')
-.to('.body2-img,.body2-img2',{
-    autoAlpha: 1,
-    ease: 'linear',
-    duration: .2,
-},'>')
 
-// body2_img_gsap.pause()
-
-function mobile_fun() {
-    body2_swiper.removeAllSlides()
-    body4_swiper.removeAllSlides()
-    mobile.forEach((item, index) => {
-        body2_swiper.appendSlide(`
-        <div class="swiper-slide col-lg-3 col-12">
-            <div id="${item}" class="${index === 0 || index === 2 ? 'body2-btn' : 'body2-btn2'} ${item === mobile_click?'active':''}" onclick="body2_btn_click(event)">
-                <p class="f7">${mobile_title[index].p}</p>
-                <h1 class="f5">${mobile_title[index].title}<br>
-                    「${item}」
-                </h1>
-            </div>
+mobile.forEach((item, index) => {
+    body2_swiper.appendSlide(`
+    <div class="swiper-slide col-lg-3 col-12">
+        <div id="${item}" class="ccc ${index === 0 || index === 2 ? 'body2-btn' : 'body2-btn2'} ${item === mobile_click ? 'active' : ''}" onclick="body2_btn_click(event)">
+            <p class="f7">${mobile_title[index].p}</p>
+            <h1 class="f5">${mobile_title[index].title}<br>
+                「${item}」
+            </h1>
         </div>
-        `)
-    })
-    body2_img_gsap.restart()
+    </div>
+    `)
+})
+gsap.to('.body2-btn', {
+    y: 50,
+    duration: 2,
+    yoyo: true,
+    repeat: -1,
+    ease: 'linear'
+})
+gsap.to('.body2-btn2', {
+    y: -50,
+    duration: 2,
+    yoyo: true,
+    repeat: -1,
+    ease: 'linear'
+})
+function mobile_fun() {
+    body4_swiper.removeAllSlides()
     const sss = mobile_data[mobile_click]
     q('.body2-img').src = sss.body2_img
     q('.body2-title').innerText = sss.body2_title
@@ -237,73 +230,76 @@ function mobile_fun() {
         </div>
         `)
     })
-    gsap.to('.body2-btn', {
-        y: 50,
-        duration: 2,
-        yoyo: true,
-        repeat: -1,
-        ease: 'linear'
+    var body2_img_gsap = gsap.timeline()
+    .to('.body2-img,.body2-img2', {
+        autoAlpha: 0,
+        ease: 'linear',
+        duration: .2,
     })
-    gsap.to('.body2-btn2', {
-        y: -50,
-        duration: 2,
-        yoyo: true,
-        repeat: -1,
-        ease: 'linear'
-    })
+    .fromTo('.body2-img,.body2-img2',
+        { autoAlpha: 0 },
+        {
+        autoAlpha: 1,
+        ease: 'linear',
+        duration: .2,
+    },)
 }
 function body2_btn_click(e) {
     mobile_click = e.currentTarget.id
+    qa('.ccc').forEach(item => {
+        item.classList.remove('active')
+    })
+    e.currentTarget.classList.add('active')
     mobile_fun()
 }
 mobile_fun()
-gsap_media.add('(min-width:1080px)',()=>{
-    gsap.from('.body3-img',{
-        x:300,
-        autoAlpha:0,
-        duration:1,
-        ease:"bounce.out",
-        scrollTrigger:{
-            trigger:'#body3',
-            start:'top center',
-            end:'center center',
+gsap_media.add('(min-width:1080px)', () => {
+    gsap.from('.body3-img', {
+        x: 300,
+        autoAlpha: 0,
+        duration: 1,
+        ease: "bounce.out",
+        scrollTrigger: {
+            trigger: '#body3',
+            start: 'top center',
+            end: 'center center',
         }
     })
 })
 
 // body5
 
-gsap_media.add('(min-width:1080px)',()=>{
-        gsap.to('.body4-swiper-wrapper',{
-            x:0,
-            duration:2,
-            scrollTrigger:{
-                trigger:'.body4-swiper',
-                start:'top center',
-                end:'center center',
-                scrub:1,
-            }
-        })
+gsap_media.add('(min-width:1080px)', () => {
+    gsap.to('.body4-swiper-wrapper', {
+        x: 0,
+        duration: 2,
+        scrollTrigger: {
+            trigger: '.body4-swiper',
+            start: 'top center',
+            end: 'center center',
+            scrub: 1,
+        }
     })
+})
 var body5_swiper = new Swiper('.body5-swiper', {
-    grabCursor:true,
-    slidesPerView:1.3,
-    spaceBetween:20,
-    centeredSlides:true,
-    autoplay:{
-        delay:5000,
-        disableOnInteraction:false,
+    grabCursor: true,
+    slidesPerView: 1.3,
+    spaceBetween: 20,
+    centeredSlides: true,
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
     },
-    pagination:{
-        el:'.body5-pagination',
-        clickable:true,
+    pagination: {
+        el: '.body5-pagination',
+        clickable: true,
     },
-    navigation:{
-        nextEl:'.body5-swiper-next',
-        prevEl:'.body5-swiper-prev',
+    navigation: {
+        nextEl: '.body5-swiper-next',
+        prevEl: '.body5-swiper-prev',
     },
 })
-body5_data.forEach((item,index)=>{
+body5_data.forEach((item, index) => {
     body5_swiper.appendSlide(`
     <div class="swiper-slide">
         <div class="forum">
@@ -329,7 +325,7 @@ const body5_chart = new Chart(q('#body5-chart'), {
         datasets: [{
             label: '萬人',
             data: [300, 330, 280, 320],
-            backgroundColor:[
+            backgroundColor: [
                 '#79AC78',
                 '#E9B824',
                 '#6499E9',
@@ -343,21 +339,21 @@ const body5_chart = new Chart(q('#body5-chart'), {
 
 // body6
 
-function body6(){
+function body6() {
     q('.serve-btn-box').innerHTML = ''
-    body6_btn.forEach((item)=>{
+    body6_btn.forEach((item) => {
         q('.serve-btn-box').innerHTML += `
-            <div id="${item}" class="my-3 serve-btn fw-bold ${item === body6_click ?'active' : ''}" onclick="body6_a(event)">${item}</div>
+            <div id="${item}" class="my-3 serve-btn fw-bold ${item === body6_click ? 'active' : ''}" onclick="body6_a(event)">${item}</div>
         `
     })
-    gsap.from('.body6-text',{
-        y:50,
-        opacity:0,
-        duration:.5,
+    gsap.from('.body6-text', {
+        y: 50,
+        opacity: 0,
+        duration: .5,
     })
     q('.body6-text').innerHTML = `${body6_data[body6_click]}`
 }
-function body6_a(e){
+function body6_a(e) {
     body6_click = e.currentTarget.id
     body6()
 }
@@ -367,7 +363,7 @@ var message_name = []
 var message_email = []
 var message_text = []
 
-function message_submit(event){
+function message_submit(event) {
     if (q('form input').value != '') {
         message_name.push(q('.message-name').value)
         message_email.push(q('.message-email').value)
@@ -391,7 +387,7 @@ function message_submit(event){
         q('.message-name').value = ''
         q('.message-email').value = ''
         q('.message-text').value = ''
-        location.href='#body5'
+        location.href = '#body5'
         body5_swiper.slideTo(body5_swiper.slides.length - 1, 0)
         body5_swiper.autoplay.start()
     }
@@ -449,9 +445,9 @@ q('.robot-submit').addEventListener('click', () => {
         `
         let ans = '感謝您的詢問，我們將通知網頁管理員為您回復'
         x = Object.keys(robot_data).filter(k => q('.robot-input').value.includes(k))
-        if(x.length){
+        if (x.length) {
             ans = robot_data[x].text
-            gsap.to(window,{duration:0,scrollTo:`#${robot_data[x].url}`})
+            gsap.to(window, { duration: 0, scrollTo: `#${robot_data[x].url}` })
         }
         setTimeout(() => {
             q('.robot-body').innerHTML += `
@@ -477,84 +473,77 @@ q('.robot-input').addEventListener('keypress', (e) => {
 
 var sun_click = 'sun'
 const color_data = {
-    sun:{
-        '--bg--color1':'#79AC78',
-        '--bg--color2':'#E9B824',
-        '--body--bg':'#fff',
-        '--body--color':'#000',         
+    sun: {
+        '--bg--color1': '#79AC78',
+        '--bg--color2': '#E9B824',
+        '--body--bg': '#fff',
+        '--body--color': '#000',
     },
-    moon:{
-        '--bg--color1':'#E9B824',
-        '--bg--color2':'#79AC78',
-        '--body--bg':'#5d5d5d',
-        '--body--color':'#fff', 
+    moon: {
+        '--bg--color1': '#E9B824',
+        '--bg--color2': '#79AC78',
+        '--body--bg': '#5d5d5d',
+        '--body--color': '#fff',
     },
 }
-function sun(){
-    if(sun_click === 'sun'){
+function sun() {
+    if (sun_click === 'sun') {
         sun_click = 'moon'
-        q('.nav-icon-sun').src='./img/nav/nav-icon-moon.png'
-    }else{
+        q('.nav-icon-sun').src = './img/nav/nav-icon-moon.png'
+    } else {
         sun_click = 'sun'
-        q('.nav-icon-sun').src='./img/nav/nav-icon-sun.png'
+        q('.nav-icon-sun').src = './img/nav/nav-icon-sun.png'
     }
-    for(let key in color_data[sun_click]){
+    for (let key in color_data[sun_click]) {
         console.log(color_data[sun_click][key]);
-        document.documentElement.style.setProperty(key,color_data[sun_click][key])
+        document.documentElement.style.setProperty(key, color_data[sun_click][key])
     }
 }
 var fs = 1
 const fs_data = {
-    1:{
-        '--fs--title':'80px',
-        '--fs--1':'70px',
-        '--fs--2':'60px',
-        '--fs--3':'50px',
-        '--fs--4':'40px',
-        '--fs--5':'30px',
-        '--fs--6':'23px',
-        '--fs--7':'20px',
+    1: {
+        '--fs--title': '80px',
+        '--fs--1': '70px',
+        '--fs--2': '60px',
+        '--fs--3': '50px',
+        '--fs--4': '40px',
+        '--fs--5': '30px',
+        '--fs--6': '23px',
+        '--fs--7': '20px',
     },
-    2:{
-        '--fs--title':'83px',
-        '--fs--1':'73px',
-        '--fs--2':'63px',
-        '--fs--3':'53px',
-        '--fs--4':'43px',
-        '--fs--5':'33px',
-        '--fs--6':'26px',
-        '--fs--7':'23px',
+    2: {
+        '--fs--title': '83px',
+        '--fs--1': '73px',
+        '--fs--2': '63px',
+        '--fs--3': '53px',
+        '--fs--4': '43px',
+        '--fs--5': '33px',
+        '--fs--6': '26px',
+        '--fs--7': '23px',
     },
-    3:{
-        '--fs--title':'86px',
-        '--fs--1':'76px',
-        '--fs--2':'66px',
-        '--fs--3':'56px',
-        '--fs--4':'46px',
-        '--fs--5':'36px',
-        '--fs--6':'29px',
-        '--fs--7':'26px',
+    3: {
+        '--fs--title': '86px',
+        '--fs--1': '76px',
+        '--fs--2': '66px',
+        '--fs--3': '56px',
+        '--fs--4': '46px',
+        '--fs--5': '36px',
+        '--fs--6': '29px',
+        '--fs--7': '26px',
     },
 }
-function fs_click(){
-    fs +=1
-    console.log(fs);
-    if(fs === 2){
-        for(let key in fs_data[fs]){
-            document.documentElement.style.setProperty(key,fs_data[fs][key])
-            q('.fs-btn').innerText = 'A+'
-        }
-    }else if(fs === 3){
-        for(let key in fs_data[fs]){
-            document.documentElement.style.setProperty(key,fs_data[fs][key])
-        }
+function fs_click() {
+    fs += 1
+    if (fs === 2) {
+        q('.fs-btn').innerText = 'A+'
+    } else if (fs === 3) {
         q('.fs-btn').innerText = 'A++'
-    }else{
-        fs = 1
-        for(let key in fs_data[fs]){
-            document.documentElement.style.setProperty(key,fs_data[fs][key])
-        }
+    } else {
         q('.fs-btn').innerText = 'A'
+        fs = 1
+    }
+    for (let key in fs_data[fs]) {
+        document.documentElement.style.setProperty(key, fs_data[fs][key])
     }
 }
 
@@ -565,37 +554,35 @@ const logout_modal = new bootstrap.Modal('#logout')
 
 var log = 0
 q('.nav-login').addEventListener('click', () => {
-    if(log === 0){
+    if (log === 0) {
         login_modal.show()
         log = 1
-    }else{
+    } else {
         logout_modal.show()
     }
 })
 q('.login-btn').addEventListener('click', () => {
-    qa('#login input').forEach((item)=>{
+    qa('#login input').forEach((item) => {
         item.value = ''
     })
-    q('.nav-login').innerHTML += '<span class="color2 fw-bold">b034</span>' 
+    q('.nav-login').innerHTML += '<span class="color2 fw-bold">b034</span>'
 })
-function logout(){
+function logout() {
     log = 0
     q('.nav-login').click()
-    q('.nav-login').innerHTML ='<img src="./img/nav/nav-icon-login.png" alt="" class="nav-icon">'
+    q('.nav-login').innerHTML = '<img src="./img/nav/nav-icon-login.png" alt="" class="nav-icon">'
 }
 
 
-
-
-function gsap_title_anim(elem){
-    gsap.from(elem,{
-        x:-150,
-        opacity:0,
-        duration:1,
-        scrollTrigger:{
-            trigger:elem,
-            start:'top center',
-            end:'center center',
+function gsap_title_anim(elem) {
+    gsap.from(elem, {
+        x: -150,
+        opacity: 0,
+        duration: 1,
+        scrollTrigger: {
+            trigger: elem,
+            start: 'top center',
+            end: 'center center',
             // markers:true,
         },
     })
