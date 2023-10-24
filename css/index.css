@@ -389,9 +389,10 @@ a-scene{
     padding-left: 5px;
 }
 .forum-content{
-    height: 250px;
+    height: 300px;
     border-radius: 10px;
     border: 2px solid var(--bg--color2);
+    overflow-y: auto;
 }
 .body5-swiper-next,.body5-swiper-prev{
     color: var(--bg--color1);
@@ -524,9 +525,11 @@ footer{
     display: block;
     background-color: var(--bg--color1);
     border-radius: 0 5px 5px 5px;
+    word-break: break-all;
 }
 .robot-mess2{
     border-radius: 5px 0 5px 5px;
+    background-color: var(--bg--color2);
 }
 .robot-input{
     border-radius: 5px;
